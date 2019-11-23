@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Matematicas Computacionales</title>
+    <script src="main.js"></script>
+</head>
+    <body>
+            <label>
+                Q
+                <input type="number" min="1" max="10" id="Q" placeholder="1" required onchange="arrayOfQs()">
+            </label>
+            <label>
+                A
+                <input type="text" id="dictionary" pattern="[a-zA-Z0-9-]+" required>
+            </label>
+            <button onclick="generate_table()">TEST</button>
+
+    <div name="tableArea">
+        <span id="tableTitle"></span>
+        <table id="table" border="1">
+
+        </table>
+    </div>
+    </body>
+</html>
