@@ -51,7 +51,12 @@ function createTable() {
         let chk = document.createElement("INPUT");
         chk.setAttribute("id", "check" + r);
         chk.setAttribute("type", "checkbox");
+        var elemento = document.createElement("p");
+        var texto = document.createTextNode("q"+r);
+        elemento.appendChild(texto);
+        elemento.setAttribute("id","q" + r);
 
+        x.insertCell(0).appendChild(elemento);
         x.insertCell(0).appendChild(rad);
         x.insertCell(0).appendChild(chk);
 
