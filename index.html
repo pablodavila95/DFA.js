@@ -6,21 +6,28 @@
     <script src="main.js"></script>
 </head>
     <body>
-            <label>
-                Q
-                <input type="number" min="1" max="10" id="Q" placeholder="1" required onchange="arrayOfQs()">
-            </label>
-            <label>
-                A
-                <input type="text" id="dictionary" pattern="[a-zA-Z0-9-]+" required>
-            </label>
-            <button onclick="createTable()">TEST</button>
+        <label>
+            Q
+            <input type="number" min="1" max="10" id="Q" placeholder="1" required onchange="arrayOfQs()">
+        </label>
+        <label>
+            A
+            <input type="text" id="dictionary" pattern="[a-zA-Z0-9-]+" maxlength="4" required>
+        </label>
+        <button onclick="submit()">TEST</button>
     <br>
-    <div id="container">
-        <span id="tableTitle"></span>
-        <table id="table">
+        <div id="container">
 
-        </table>
-    </div>
+            <text id="tableTitle" style="width: auto"></text>
+            <br>
+            <table id="table">
+
+            </table>
+            <br>
+            <label for="stringOfCharacters"></label>
+            <input type="text" id="stringOfCharacters" required pattern="">
+            <button onclick="submitString()">Submit</button>
+
+        </div>
     </body>
 </html>

@@ -32,8 +32,43 @@ arrayOfQs = () => {
     return data;
 };
 
+dynamic_regex = () => {
+    const remDup = e => [...new Set(e)].sort().join("");
+
+    let textInput = document.getElementById("stringOfCharacters");
+    let dictionaryString = remDup(document.getElementById('dictionary').value);
+    dictionaryString = dictionaryString.split("").join("|");
+    
+    textInput.pattern = "(" + dictionaryString.toString() + ")*";
+};
+
+submit = () => {
+    let alphabet = document.getElementById("dictionary");
+    if(!alphabet.checkValidity()) {
+        alert("El alfabeto tiene un caracter invalido");
+    }
+    else {
+        createTable();
+    }
+};
+
+submitString = () => {
+    dynamic_regex();
+    let theString = document.getElementById("stringOfCharacters");
+    if(!theString.checkValidity()) {
+        alert("La cadena debe contener solo valores del alfabeto")
+    }
+    else {
+        //TODO logic
+        console.log("HERE!");
+    }
+};
 
 function createTable() {
+
+
+    clear_table();
+
     let myQs = arrayOfQs();
 
     let title = document.getElementById("tableTitle");
@@ -51,10 +86,10 @@ function createTable() {
         let chk = document.createElement("INPUT");
         chk.setAttribute("id", "check" + r);
         chk.setAttribute("type", "checkbox");
-        var elemento = document.createElement("p");
-        var texto = document.createTextNode("q"+r);
+        let elemento = document.createElement("p");
+        let texto = document.createTextNode("q" + r);
         elemento.appendChild(texto);
-        elemento.setAttribute("id","q" + r);
+        elemento.setAttribute("id", "q" + r);
 
         x.insertCell(0).appendChild(elemento);
         x.insertCell(0).appendChild(rad);
