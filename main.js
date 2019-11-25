@@ -44,10 +44,9 @@ dynamic_regex = () => {
 
 submit = () => {
     let alphabet = document.getElementById("dictionary");
-    if(!alphabet.checkValidity()) {
+    if (!alphabet.checkValidity()) {
         alert("El alfabeto tiene un caracter invalido");
-    }
-    else {
+    } else {
         createTable();
     }
 };
@@ -55,11 +54,10 @@ submit = () => {
 submitString = () => {
     dynamic_regex();
     let theString = document.getElementById("stringOfCharacters");
-    if(!theString.checkValidity()) {
+    if (!theString.checkValidity()) {
         alert("La cadena debe contener solo valores del alfabeto")
-    }
-    else {
-        arrayOfStates();
+    } else {
+        theTest();
         console.log("HERE!");
     }
 };
@@ -82,7 +80,7 @@ function createTable() {
 
         let rad = document.createElement("INPUT");
         rad.setAttribute("type", "radio");
-        rad.setAttribute("name", "checks" );
+        rad.setAttribute("name", "checks");
         rad.setAttribute("id", "radio" + r);
         let chk = document.createElement("INPUT");
         chk.setAttribute("id", "check" + r);
@@ -116,6 +114,5 @@ function createTable() {
         }
     }
 }
-
 
 

@@ -1,16 +1,22 @@
 runEachRow = () => {
     let qs = arrayOfQs(); //keys
+    console.log(qs);
     let alfa = getDictionary();
+    console.log(alfa);
     let a = []; //values
     let states = document.getElementsByName("states");
+    console.log(states);
     let checkboxes = document.getElementsByName("checks");
+    console.log(checkboxes);
     let q = {}; //mi estado
 
     let isEnd = false;
     let isValidation = false;
 
     for (let i = 0; i === alfa.length; i++) {
+        console.log(states);
         a.push(states[i].value);
+        console.log(a);
     }
     for (let j = 0; j === 2; j++) {
         if (checkboxes[j].type === "checkbox") {
@@ -45,9 +51,45 @@ arrayOfStates = () => {
     let array = [];
     let n = document.getElementsByName("row").length;
 
-    for (let i=0; i === n; i++) {
+    for (let i = 0; i === n; i++) {
         array[i] = runEachRow();
     }
     console.log(array);
     return array;
+};
+
+
+getData = (nameOfElement) => {
+    const chunkArray = (myArray, chunk_size) => {
+        let index = 0;
+        let arrayLength = myArray.length;
+        let tempArray = [];
+
+        let myChunk;
+        for (index = 0; index < arrayLength; index += chunk_size) {
+            myChunk = myArray.slice(index, index + chunk_size);
+            tempArray.push(myChunk);
+        }
+        return tempArray;
+    };
+
+    let qsSize = getQs().length;
+    let alfa = getDictionary(); //keys
+    let alfaSize = alfa.length;
+
+    let thing = document.querySelectorAll(nameOfElement);
+    thing = Array.from(thing);
+
+
+    let a; //values
+    a = chunkArray(thing, alfaSize); // this returns [[], [], []]
+    return a;
+};
+
+theTest = () => {
+    let var1 = getData("select");
+    //let var2 = getData("radio");
+    //let var3 = getData("checkbox");
+
+    console.log(var1);
 };
