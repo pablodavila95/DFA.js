@@ -38,7 +38,7 @@ dynamic_regex = () => {
     let textInput = document.getElementById("stringOfCharacters");
     let dictionaryString = remDup(document.getElementById('dictionary').value);
     dictionaryString = dictionaryString.split("").join("|");
-    
+
     textInput.pattern = "(" + dictionaryString.toString() + ")*";
 };
 
@@ -59,7 +59,7 @@ submitString = () => {
         alert("La cadena debe contener solo valores del alfabeto")
     }
     else {
-        //TODO logic
+        start_validation();
         console.log("HERE!");
     }
 };
