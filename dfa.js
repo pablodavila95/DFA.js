@@ -48,5 +48,6 @@ arrayOfStates = () => {
     for (let i=0; i === n; i++) {
         array[i] = runEachRow();
     }
+    console.log(array);
     return array;
 };

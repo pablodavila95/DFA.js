@@ -59,7 +59,7 @@ submitString = () => {
         alert("La cadena debe contener solo valores del alfabeto")
     }
     else {
-        start_validation();
+        arrayOfStates();
         console.log("HERE!");
     }
 };
@@ -82,10 +82,12 @@ function createTable() {
 
         let rad = document.createElement("INPUT");
         rad.setAttribute("type", "radio");
+        rad.setAttribute("name", "checks" );
         rad.setAttribute("id", "radio" + r);
         let chk = document.createElement("INPUT");
         chk.setAttribute("id", "check" + r);
         chk.setAttribute("type", "checkbox");
+        chk.setAttribute("name", "checks");
         let elemento = document.createElement("p");
         let texto = document.createTextNode("q" + r);
         elemento.appendChild(texto);
@@ -98,6 +100,7 @@ function createTable() {
 
         for (let c = 0; c < cn; c++) {
             let element = document.createElement("select");
+            element.setAttribute("name", "states");
 
             element.setAttribute("id", "s" + c);
 
@@ -105,7 +108,7 @@ function createTable() {
                 let opt = myQs[i];
                 let z = document.createElement("option");
                 z.textContent = opt;
-                z.id = opt;
+                z.value = opt;
 
                 element.appendChild(z);
             }
