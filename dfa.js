@@ -59,7 +59,7 @@ arrayOfStates = () => {
 };
 
 
-getData = (nameOfElement) => {
+getData = () => {
     const chunkArray = (myArray, chunk_size) => {
         let index = 0;
         let arrayLength = myArray.length;
@@ -77,17 +77,58 @@ getData = (nameOfElement) => {
     let alfa = getDictionary(); //keys
     let alfaSize = alfa.length;
 
-    let thing = document.querySelectorAll(nameOfElement);
+    let thing = document.querySelectorAll("select");
     thing = Array.from(thing);
 
+    let i = 0;
+    while (i < thing.length) {
+        thing[i] = thing[i].value;
+        i++
+    }
+    let a = chunkArray(thing, alfaSize);
 
-    let a; //values
-    a = chunkArray(thing, alfaSize); // this returns [[], [], []]
-    return a;
+    let thing2 = document.querySelectorAll('input[type=checkbox]');
+    thing2 = Array.from(thing2);
+
+    let j = 0;
+    while (j < thing2.length) {
+        thing2[j] = thing2[j].checked;
+        j++
+    }
+
+
+    let thing3 = document.querySelectorAll('input[type=radio]');
+    thing3 = Array.from(thing3);
+
+    let k = 0;
+    while (k < thing3.length) {
+        thing3[k] = thing3[k].checked;
+        k++
+    }
+
+
+    let x = 0;
+    while (x < a.length) {
+        a[x].push(thing2[x]);
+        a[x].push(thing3[x]);
+        x++
+    }
+
+    console.log(a);
+
 };
 
+arraysToVariables = (a) => {
+    let dict = getDictionary();
+    let keys = [];
+    keys.push(dict);
+    keys.push("")
+
+};
+
+
 theTest = () => {
-    let var1 = getData("select");
+    let var1 = getData();
     //let var2 = getData("radio");
     //let var3 = getData("checkbox");
 
