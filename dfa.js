@@ -164,7 +164,7 @@ var a = objectsGenerator();
 a.q0.hasOwnProperty('isValid');
 -> you get the bool value of that q. I just need to find a way to iterate through that since it is an object inside an object.
  */
-getStart = () => {
+getS22tart = () => {
     let automata = objectsGenerator();
     console.log(automata.q0.hasOwnProperty('isValid'));
     console.log(automata.q1.hasOwnProperty('isValid'));
@@ -177,4 +177,17 @@ getStart = () => {
     //Ya teniendo este metodo, podemos accesar a cualquier propiedad de cada estado
     //Incluso podriamos cambiarlo a que tome como parametro la propiedad que vamos a leer..
 
+};
+
+getStart = () => {
+    console.log('here1');
+    //for (let i in objectsGenerator().length) {
+    for (let i=0; i < objectsGenerator().length; i++){
+        console.log('here2');
+        let temp = objectsGenerator()['q' + i];
+        if (temp.isStart) {
+            console.log('q' + i);
+            return 'q' + i;
+        }
+    }
 };
