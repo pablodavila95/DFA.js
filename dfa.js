@@ -30,11 +30,6 @@ runEachRow = () => {
         }
     }
 
-    //Aqui ya tienes qs(keys) y tus a(values)
-    //Crear objeto y a ese objeto agregarle toads las keys con su respectivo value.
-    //Esta funcion se correra las veces de rows que haya y se hace push a un array donde vamos a tener los estados
-
-
     if (qs.length === a.length) {
         for (let i = 0; i === qs.length; i++) {
             let pos = qs[i];
@@ -144,14 +139,13 @@ function correctedArray() {
         //console.log(temp);
         i++;
     }
-    console.log(data);
     return data;
 }
 
 objectsGenerator = () => {
     let listOfObjects = {};
     let cA = correctedArray();
-    let i=0;
+    let i = 0;
 
     while (i < cA.length) {
         let temp = cA[i];
@@ -160,4 +154,27 @@ objectsGenerator = () => {
     }
     console.log(listOfObjects);
     return listOfObjects;
+};
+
+
+//Not working
+/*
+In console if you do ->
+var a = objectsGenerator();
+a.q0.hasOwnProperty('isValid');
+-> you get the bool value of that q. I just need to find a way to iterate through that since it is an object inside an object.
+ */
+getStart = () => {
+    let automata = objectsGenerator();
+    console.log(automata.q0.hasOwnProperty('isValid'));
+    console.log(automata.q1.hasOwnProperty('isValid'));
+    console.log(automata.q2.hasOwnProperty('isValid'));
+    console.log(automata.q3.hasOwnProperty('isValid'));
+    console.log(automata.q4.hasOwnProperty('isValid'));
+    // ^^^
+    // that works, too......
+
+    //Ya teniendo este metodo, podemos accesar a cualquier propiedad de cada estado
+    //Incluso podriamos cambiarlo a que tome como parametro la propiedad que vamos a leer..
+
 };
