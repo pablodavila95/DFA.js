@@ -1,8 +1,16 @@
-getStart = () => {
-    let automata = objectsGenerator();
-    for(let i in automata) {
-        if (automata[i].isStart) {
-            return automata[i];
+sisi = () => {
+    let automata = Object.entries(objectsGenerator());
+    for (i=0; i < 4; i++) {
+        if (automata[i][1].isStart) {
+            console.log(automata[i]);
         }
     }
 };
+
+var radios = document.getElementsByName("cheks");
+                    radios.forEach(element => {
+                        if (element.checked) {
+                           var initial = element.value;
+                        }
+                        console.log(initial);
+                    });
