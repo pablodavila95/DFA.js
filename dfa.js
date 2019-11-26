@@ -233,3 +233,58 @@ logic = () => {
         console.log("No es valida");
     }
 };
+
+
+insidencia = () =>{
+    let cadena = document.getElementById("stringOfCharacters").value;
+    let inicio = getStart();
+    let actual = inicio;
+    let automata = objectsGenerator();
+    let diccionario = getDictionary();
+    sizeOfIncidence = Object.keys(objectsGenerator()).length-1;
+    incidencias = [];
+    
+    cadena.split('').forEach( function(char,index){
+       
+        let dict = 'dict' + diccionario.indexOf(char);
+        let siguiente = actual[dict];
+        actual = automata[siguiente];
+        valido = actual.isValid;
+
+        if(valido){
+            x = [];
+            x.push(cadena.substring(0,index+1-sizeOfIncidence));
+            x.push(cadena.substring(index-sizeOfIncidence+1,index+1));
+            x.push(cadena.substring(index+1,cadena.length));
+            incidencias.push(x);
+        }   
+        console.log(incidencias);
+    });
+    Imprimir_Incidencias();
+}
+
+
+function Imprimir_Incidencias(){
+
+    div = document.getElementById('answerB');
+    incidencias.forEach( function(incidencia){
+        before = document.createElement('span');
+        text = document.createTextNode(incidencia[0]);
+        before.appendChild(text);
+        div.appendChild(before);
+
+        highlight = document.createElement('span');
+        highlight.setAttribute('class','incidencia');
+        highlight.setAttribute('style','background-color: #FFFF00');
+        text = document.createTextNode(incidencia[1]);
+        highlight.appendChild(text);
+        div.appendChild(highlight);
+
+        after = document.createElement('span');
+        text = document.createTextNode(incidencia[2]);
+        after.appendChild(text);
+        div.appendChild(after);
+        
+        div.appendChild(document.createElement('br'));
+    })
+}

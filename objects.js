@@ -14,3 +14,14 @@ var radios = document.getElementsByName("cheks");
                         }
                         console.log(initial);
                     });
+
+
+yes = () => {
+    let automata = Object.entries(objectsGenerator());
+    Object.entries(automata).forEach(function(elements){
+      
+        var columns = {};
+        
+        
+    })
+};
