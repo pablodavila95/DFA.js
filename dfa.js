@@ -206,6 +206,7 @@ logic = () => {
     let cadena = document.getElementById("stringOfCharacters").value;
     let diccionario = getDictionary();
     let valido = false;
+    let answer = document.getElementById("answerA");
 
     cadena.split('').forEach(function (char) {
         console.log(actual);
@@ -224,9 +225,11 @@ logic = () => {
 
     });
     if (valido) {
+        answer.innerText = "Si es valida la cadena";
         console.log("Si es valida la cadena");
     }
     else {
+        answer.innerText = "No es valida la cadena";
         console.log("No es valida");
     }
 };
