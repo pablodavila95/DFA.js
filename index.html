@@ -7,34 +7,44 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+    <style>
+        html *
+        {
+            font-size: 1.1em !important;
+            color: #000 !important;
+            font-family: OpenSans,serif !important;
+        }
+    </style>
 </head>
-    <body>
+    <body class="container">
+    <div id="setup" class="container">
         <label>
             Q
-            <input type="number" min="1" max="10" id="Q" placeholder="1" required onchange="arrayOfQs()">
+            <input type="number" min="1" max="10" id="Q" placeholder="1" required onchange="arrayOfQs()" class="input">
         </label>
         <label>
             A
-            <input type="text" id="dictionary" pattern="[a-zA-Z0-9-]+" maxlength="4" required>
+            <input type="text" id="dictionary" pattern="[a-zA-Z0-9-]+" maxlength="4" required class="input">
         </label>
-        <button onclick="submit()">TEST</button>
+        <button onclick="submit()" class="button">Create Automata</button>
     <br>
-        <div id="container">
+    </div>
+        <div id="container" class="container">
 
             <text id="tableTitle" style="width: auto"></text>
             <br>
-            <table id="table">
+            <table id="table" class="table">
 
             </table>
             <br>
             <label for="stringOfCharacters"></label>
-            <input type="text" id="stringOfCharacters" required pattern="">
-            <button onclick="submitString()">Caso A</button>
-            <button onclick="insidencia()">Caso B</button>
+            <input type="text" id="stringOfCharacters" required pattern="" class="input">
+            <button onclick="submitString()" class="button">Caso A</button>
+            <button onclick="insidencia()" class="button">Caso B</button>
 
         </div>
-    <div id="answers">
+    <div id="answers" class="form-group" style="align-content: center">
         <p id="answerA"></p>
     </div>
     <div id="answerB">
