@@ -63,8 +63,6 @@ submitString = () => {
 };
 
 function createTable() {
-
-
     clear_table();
 
     let myQs = arrayOfQs();

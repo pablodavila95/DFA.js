@@ -10,8 +10,8 @@ runEachRow = () => {
     console.log(checkboxes);
     let q = {}; //mi estado
 
-    let isEnd = false;
-    let isValidation = false;
+    let isStart = false;
+    let isValid = false;
 
     for (let i = 0; i === alfa.length; i++) {
         console.log(states);
@@ -21,11 +21,11 @@ runEachRow = () => {
     for (let j = 0; j === 2; j++) {
         if (checkboxes[j].type === "checkbox") {
             if (checkboxes[j].checked === true) {
-                isValidation = true;
+                isValid = true;
             }
         } else if (checkboxes[j].type === "radio") {
             if (checkboxes[j].checked === true) {
-                isEnd = true;
+                isStart = true;
             }
         }
     }
@@ -41,8 +41,8 @@ runEachRow = () => {
             q.pos = a[i];
         }
     }
-    q.isValidation = isValidation;
-    q.isEnd = isEnd;
+    q.isValid = isValid;
+    q.isStart = isStart;
 
     return q;
 };
@@ -120,13 +120,13 @@ getData = () => {
 
 
 class State {
-    constructor(dict1, dict2, dict3, dict4, isValidation, isEnd) {
+    constructor(dict1, dict2, dict3, dict4, isValid, isStart) {
         this.dict1 = dict1;
         this.dict2 = dict2;
         this.dict3 = dict3;
         this.dict4 = dict4;
-        this.isValidation = isValidation;
-        this.isEnd = isEnd;
+        this.isValid = isValid;
+        this.isStart = isStart;
     }
 }
 
@@ -151,12 +151,13 @@ function correctedArray() {
 objectsGenerator = () => {
     let listOfObjects = {};
     let cA = correctedArray();
-    //let qSize = getQs().length;
+    let i=0;
 
-    for(i=0; i < cA.length; i++) {
+    while (i < cA.length) {
         let temp = cA[i];
         listOfObjects['q' + i] = new State(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5]);
+        i++
     }
-
     console.log(listOfObjects);
+    return listOfObjects;
 };
