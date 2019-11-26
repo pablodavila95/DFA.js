@@ -114,23 +114,49 @@ getData = () => {
         x++
     }
 
-    console.log(a);
-
-};
-
-arraysToVariables = (a) => {
-    let dict = getDictionary();
-    let keys = [];
-    keys.push(dict);
-    keys.push("")
+    return a;
 
 };
 
 
-theTest = () => {
-    let var1 = getData();
-    //let var2 = getData("radio");
-    //let var3 = getData("checkbox");
+class State {
+    constructor(dict1, dict2, dict3, dict4, isValidation, isEnd) {
+        this.dict1 = dict1;
+        this.dict2 = dict2;
+        this.dict3 = dict3;
+        this.dict4 = dict4;
+        this.isValidation = isValidation;
+        this.isEnd = isEnd;
+    }
+}
 
-    console.log(var1);
+function correctedArray() {
+    let data = getData();
+    let size = data.length;
+    let i = 0;
+    while (i < size) {
+        let temp = data[i];
+
+        while (temp.length < 6) {
+            temp.splice(temp.length - 2, 0, null)
+        }
+        data[i] = temp;
+        //console.log(temp);
+        i++;
+    }
+    console.log(data);
+    return data;
+}
+
+objectsGenerator = () => {
+    let listOfObjects = {};
+    let cA = correctedArray();
+    //let qSize = getQs().length;
+
+    for(i=0; i < cA.length; i++) {
+        let temp = cA[i];
+        listOfObjects['q' + i] = new State(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5]);
+    }
+
+    console.log(listOfObjects);
 };

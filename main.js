@@ -57,7 +57,7 @@ submitString = () => {
     if (!theString.checkValidity()) {
         alert("La cadena debe contener solo valores del alfabeto")
     } else {
-        theTest();
+        objectsGenerator();
         console.log("HERE!");
     }
 };
