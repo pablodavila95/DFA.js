@@ -115,11 +115,11 @@ getData = () => {
 
 
 class State {
-    constructor(dict1, dict2, dict3, dict4, isValid, isStart) {
+    constructor(dict0, dict1, dict2, dict3, isValid, isStart) {
+        this.dict0 = dict0;
         this.dict1 = dict1;
         this.dict2 = dict2;
         this.dict3 = dict3;
-        this.dict4 = dict4;
         this.isValid = isValid;
         this.isStart = isStart;
     }
@@ -179,15 +179,54 @@ getS22tart = () => {
 
 };
 
+getAceptacion = () => {
+    let aceptacion = [];
+    for (let i = 0; i < Object.keys(objectsGenerator()).length; i++){
+        let temp = objectsGenerator()['q' + i];
+        if (temp.isValid) {
+            aceptacion.push('q' + i);
+        }
+    }
+    return aceptacion;
+};
+
 getStart = () => {
-    console.log('here1');
-    //for (let i in objectsGenerator().length) {
-    for (let i=0; i < objectsGenerator().length; i++){
-        console.log('here2');
+    for (let i = 0; i < Object.keys(objectsGenerator()).length; i++){
         let temp = objectsGenerator()['q' + i];
         if (temp.isStart) {
-            console.log('q' + i);
-            return 'q' + i;
+            return temp;
         }
+    }
+};
+
+logic = () => {
+    let inicio = getStart();
+    let actual = inicio;
+    let automata = objectsGenerator();
+    let cadena = document.getElementById("stringOfCharacters").value;
+    let diccionario = getDictionary();
+    let valido = false;
+
+    cadena.split('').forEach(function (char) {
+        console.log(actual);
+        let dict = 'dict' + diccionario.indexOf(char);
+        console.log(dict);
+
+        let siguiente = actual[dict];
+        console.log(siguiente);
+
+        actual = automata[siguiente];
+        console.log(actual);
+
+        valido = actual.isValid;
+        console.log(valido);
+
+
+    });
+    if (valido) {
+        console.log("Si es valida la cadena");
+    }
+    else {
+        console.log("No es valida");
     }
 };
