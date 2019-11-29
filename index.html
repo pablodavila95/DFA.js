@@ -5,17 +5,15 @@
     <title>Matematicas Computacionales</title>
     <script src="main.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
-    <link rel = "stylesheet"
-   type = "text/css"
-   href = "main.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans"/>
+    <link rel="stylesheet"
+          type="text/css"
+          href="main.css"/>
 </head>
-    <body class="container">
-        <center>   <h1 class="display-1">Automata Finito Deterministico</h1></center>
-         
-    <div id="cont">
+<body class="container">
+<center><h1 class="display-1">Automata Finito Deterministico</h1></center>
+
+<div id="cont">
     <div id="setup" class="container">
         <label>
             Q
@@ -25,24 +23,24 @@
             A
             <input type="text" id="dictionary" pattern="[a-zA-Z0-9-]+" maxlength="4" required class="input">
         </label>
-       
+
         <button onclick="submit()" class="btn btn-primary my-1">Create Automata</button>
-    <br>
+        <br>
     </div>
-        <div id="container" class="container">
+    <div id="container" class="container">
 
-            <text id="tableTitle" style="width: auto"></text>
-            <br>
-            <table id="table" class="table" width="100">
+        <text id="tableTitle" style="width: auto"></text>
+        <br>
+        <table id="table" class="table" width="100">
 
-            </table>
-            <br>
-            <label for="stringOfCharacters"></label>
-            <input type="text" id="stringOfCharacters" required pattern="" class="input">
-            <button onclick="submitString()" class="btn btn-primary">Caso A</button>
-            <button onclick="insidencia()" class="btn btn-primary">Caso B</button>
+        </table>
+        <br>
+        <label for="stringOfCharacters"></label>
+        <input type="text" id="stringOfCharacters" required pattern="" class="input">
+        <button onclick="submitString()" class="btn btn-primary">Caso A</button>
+        <button onclick="insidencia()" class="btn btn-primary">Caso B</button>
 
-        </div>
+    </div>
     <div id="answers" class="form-group" style="align-content: center">
         <p id="answerA"></p>
     </div>
@@ -50,5 +48,5 @@
 
     </div>
 </div>
-    </body>
+</body>
 </html>

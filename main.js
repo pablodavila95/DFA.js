@@ -1,15 +1,18 @@
 getQs = () => {
+    //Retorna cuantos estados habra
     let size = document.getElementById("Q").value;
     parseInt(size);
     return size;
 };
 
 getASize = () => {
+    //Retorna el tamano del alfabeto
     let dictionary = getDictionary();
     return dictionary.length;
 };
 
 getDictionary = () => {
+    //Retorna el alfabeto en forma de Array []
     const remDup = e => [...new Set(e)].sort().join("");
 
     let dictionaryValue = remDup(document.getElementById('dictionary').value);
@@ -18,11 +21,13 @@ getDictionary = () => {
 };
 
 clear_table = () => {
+    //FRONTEND limpia la tabla para generar una nueva consulta
     let table = document.getElementById("table");
     table.innerHTML = "";
 };
 
 arrayOfQs = () => {
+    //Retorna un array con "q#": String
     let data = [];
     let length = getQs(); // user defined length
 
@@ -33,16 +38,22 @@ arrayOfQs = () => {
 };
 
 dynamic_regex = () => {
+    //FRONTEND esto ayuda a realizar las validaciones iniciales
+
+    //Remueve duplicados del alfabeto
     const remDup = e => [...new Set(e)].sort().join("");
 
     let textInput = document.getElementById("stringOfCharacters");
     let dictionaryString = remDup(document.getElementById('dictionary').value);
+
+    //Genera un regex que va a verificar que la cadena del usuario solamente contenga letras del alfabeto
     dictionaryString = dictionaryString.split("").join("|");
 
     textInput.pattern = "(" + dictionaryString.toString() + ")*";
 };
 
 submit = () => {
+    //fRONTEND La funcion que verifica y crea la tabla
     let alphabet = document.getElementById("dictionary");
     if (!alphabet.checkValidity()) {
         alert("El alfabeto tiene un caracter invalido");
@@ -52,6 +63,7 @@ submit = () => {
 };
 
 submitString = () => {
+    ///Al hacer submit al programa, el regex se adapta y comienza a ejecutarse la logica. Esto es para el modo A
     dynamic_regex();
     let theString = document.getElementById("stringOfCharacters");
     if (!theString.checkValidity()) {
@@ -63,6 +75,7 @@ submitString = () => {
 };
 
 function createTable() {
+    //FRONTEND crea la tabla de html para que el usuario la pueda manipular
     clear_table();
 
     let myQs = arrayOfQs();
@@ -115,6 +128,7 @@ function createTable() {
 
 
 runEachRow = () => {
+    //Funcion que recolecta en un objeto los valores de cada estado y sus atributos
     let qs = arrayOfQs(); //keys
     console.log(qs);
     let alfa = getDictionary();
@@ -159,6 +173,8 @@ runEachRow = () => {
 };
 
 arrayOfStates = () => {
+    //utiliza la funcion runEachRow y la cambia a otra estructura mas facil de
+    //manipular
     let array = [];
     let n = document.getElementsByName("row").length;
 
@@ -171,6 +187,7 @@ arrayOfStates = () => {
 
 
 getData = () => {
+    //Esta funcion obtiene los datos del frontend y parte los arrays para generar un array de arrays
     const chunkArray = (myArray, chunk_size) => {
         let index = 0;
         let arrayLength = myArray.length;
@@ -183,8 +200,7 @@ getData = () => {
         }
         return tempArray;
     };
-
-    let qsSize = getQs().length;
+    getQs().length;
     let alfa = getDictionary(); //keys
     let alfaSize = alfa.length;
 
@@ -231,6 +247,7 @@ getData = () => {
 
 
 class State {
+    //La clase que se utiliza para construir el objeto que esta dentro del objeto automata
     constructor(dict0, dict1, dict2, dict3, isValid, isStart) {
         this.dict0 = dict0;
         this.dict1 = dict1;
@@ -242,6 +259,7 @@ class State {
 }
 
 function correctedArray() {
+    //Si el alfabeto es menor de 4, esta funcion agrega null a los atributos sobrantes
     let data = getData();
     let size = data.length;
     let i = 0;
@@ -252,13 +270,13 @@ function correctedArray() {
             temp.splice(temp.length - 2, 0, null)
         }
         data[i] = temp;
-        //console.log(temp);
         i++;
     }
     return data;
 }
 
 objectsGenerator = () => {
+    //Genera un objeto automata con los estados como keys y sus valores son otro objeto con los atributos correspondientes
     let listOfObjects = {};
     let cA = correctedArray();
     let i = 0;
@@ -274,6 +292,7 @@ objectsGenerator = () => {
 
 
 getAceptacion = () => {
+    //Busca el estado de aceptacion
     let aceptacion = [];
     for (let i = 0; i < Object.keys(objectsGenerator()).length; i++) {
         let temp = objectsGenerator()['q' + i];
@@ -285,6 +304,7 @@ getAceptacion = () => {
 };
 
 getStart = () => {
+    //Busca el estado de inicio
     for (let i = 0; i < Object.keys(objectsGenerator()).length; i++) {
         let temp = objectsGenerator()['q' + i];
         if (temp.isStart) {
@@ -294,25 +314,45 @@ getStart = () => {
 };
 
 logic = () => {
+    //getStart te da el estado (q) donde inicia el automata como String.
     let inicio = getStart();
     let actual = inicio;
+    //objectsGenerator es la funcion que te da el automata ->
+    // Ejemplo: objectsGenerator -> {
+    //      q0: {a: "q0", b: "q1", c: "q3", d: null, isStart: true, isAcpetacion: false}
+    // }
+    //Se retorna un objeto donde sus llaves son los nombres de los estados (q#) y sus valores son objetos que contienen como atributos
+    //a que posicion lleva cada caracter del alfabeto y si es de aceptacion y/o el inicio.
     let automata = objectsGenerator();
+    //Obtenemos la cadena que ingresa el usuario
     let cadena = document.getElementById("stringOfCharacters").value;
+    //Obtenemos el diccionario. Se validan caracteres correctos y ademas se eliminan duplicados. Maximo 4 caracteres
     let diccionario = getDictionary();
     let valido = false;
     let answer = document.getElementById("answerA");
 
+    //Partimos cada caracter de la cadena de usuario y la recorremos por cada 'char'
     cadena.split('').forEach(function (char) {
+        //Imprimimos la posicion actual, la q donde se inicio
         console.log(actual);
+
+        //En la clase State los atributos para cada letra del alfabeto son dict0, dict1, dict2...
+        //char es nuestra variable que cambia en el for, por lo tanto si nuestra cadena es 'abcd' el primer char seria 'a'
+        //Ubicamos en que posicion del alfabeto esta 'a' y la ponemos en un string 'dict#' para poder leer del objeto State.
         let dict = 'dict' + diccionario.indexOf(char);
         console.log(dict);
 
+        //Para obtener la siguiente posicion vamos a leer del estado actual su atributo 'dict#', # siendo lo que obtuvimos antes
         let siguiente = actual[dict];
         console.log(siguiente);
 
+        //Ahora cambia la posicion actual, llamamos del automata el siguiente estado. Siguiente se obtuvo en la linea anterior.
         actual = automata[siguiente];
         console.log(actual);
 
+        //Del esado actual vamos a leer su atributo isValid y almacenarlo
+        //Repetimos hasta terminar con la cadena (for loop)
+        //Si la cadena no es valida, valido no cambia a true. Nota que la variable valido se declara antes del ciclo y comienza como false.
         valido = actual.isValid;
         console.log(valido);
 
@@ -329,6 +369,8 @@ logic = () => {
 
 
 insidencia = () => {
+
+
     let cadena = document.getElementById("stringOfCharacters").value;
     let inicio = getStart();
     let actual = inicio;
@@ -354,7 +396,7 @@ insidencia = () => {
         console.log(incidencias);
     });
     Imprimir_Incidencias();
-}
+};
 
 
 function Imprimir_Incidencias() {
